@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+    <title>Be My Valentine ❤️</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 420px;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            position: relative;
+            z-index: 2;
+            position: relative;
+    z-index: 10; 
+        }
+
+        img {
+            width: 60%;
+    max-width: 200px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+        }
+
+        #timer {
+            margin: 10px 0 20px;
+            font-weight: bold;
+            color: #ff2e63;
+        }
+
+        button {
+            width: 80%;
+            padding: 12px;
+            font-size: 18px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            margin: 8px auto;
+            display: block;
+            transition: 0.3s;
+            position: relative;
+    z-index: 11;
+        }
+
+        #yesBtn {
+            background: #ff4d6d;
+            color: white;
+        }
+
+        #noBtn {
+            background: #777;
+            color: white;
+            position: relative;
+        }
+
+        #message {
+            display: none;
+            margin-top: 15px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #ff2e63;
+        }
+
+       
+        .heart {
+            position: fixed;
+    top: -20px;
+    font-size: 20px;
+    animation: fall linear forwards;
+    z-index: 0;   
+    pointer-events: none; 
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(110vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    
+    <img src="photo.jpg" alt="Us ❤️">
+
+    <h1>Mira Will you be my Valentine? ❤️</h1>
+
+    <div id="timer"></div>
+
+    <button id="yesBtn">Yes 😘</button>
+    <span style="margin-left: 10px; color: red;">Don't click here</span>
+     ⬇️
+    <button id="noBtn">No 😢</button>
+
+    <p id="message">
+        
+    Mora You are my forever and always I love you more than anything in this world ❤️
+    </p>
+
+    
+   <audio id="bgMusic" src="C:\Users\Bishoy\OneDrive\Desktop\Valentine\Kelma.mp3" loop></audio>
+
+
+</div>
+
+
+
+<script>
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const message = document.getElementById("message");
+
+let yesSize = 18;
+
+
+
+noBtn.addEventListener("click", () => {
+    yesSize += 10;
+    yesBtn.style.fontSize = yesSize + "px";
+
+    const x = Math.random() * 150 - 75;
+    const y = Math.random() * 150 - 75;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+});
+
+
+const music = document.getElementById("bgMusic");
+
+yesBtn.addEventListener("click", () => {
+    message.style.display = "block";
+    yesBtn.style.display = "none";
+    noBtn.style.display = "none";
+
+    music.play(); 
+});
+
+
+
+
+const startDate = new Date("May 25, 2025 00:00:00").getTime();
+const timer = document.getElementById("timer");
+
+setInterval(() => {
+    const now = new Date().getTime();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff / (1000*60*60)) % 24);
+    const minutes = Math.floor((diff / (1000*60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    timer.innerHTML =
+        `Together for ❤️<br>
+         ${days} days ${hours}h ${minutes}m ${seconds}s`;
+}, 1000);
+
+
+
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+    heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 300); 
+</script>
+
+</body>
+</html>
